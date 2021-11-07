@@ -2,9 +2,9 @@ import Config
 
 # Configure your database
 config :books_cat, BooksCat.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "books_cat_dev",
+  username: "books_cat",
+  password: "books_cat",
+  database: "books_db_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
