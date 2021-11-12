@@ -44,5 +44,6 @@ defmodule BooksCatWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug CORSPlug, origin: ["http://localhost:5000"]
   plug BooksCatWeb.Router
 end
