@@ -8,10 +8,17 @@
   export let bookCategory;
   export let bookCover;
   export let bookId;
+  export let getAllBooksFunc = () => {}
 
-  function deleteBook() {
+  export function deleteBook() {
     console.log('book id: ', bookId);
-    deleteRequest('http://localhost:4000/api/books/' + bookId, bookId);
+    deleteRequest('http://localhost:4000/api/books/' + bookId, bookId).then(result => {
+      if (result.status === 204) {
+        getAllBooksFunc();
+      } else {
+        console.log('To do >> show modal with error (delete failed)');
+      }
+    });
   }
 
   function updateBook() {

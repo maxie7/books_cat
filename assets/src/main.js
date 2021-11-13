@@ -24,12 +24,11 @@ export async function updateRequest(url, data) {
 }
 
 export async function deleteRequest(url, id) {
-  let response = await fetch(url, {
+  return await fetch(url, {
 		method: 'DELETE',
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({id: id})
 	});
-	return response.json;
 }
 
 const app = new App({
