@@ -6,7 +6,6 @@
     cursor: pointer;
     color: white;
   }
-
 </style>
 
 <button on:click>

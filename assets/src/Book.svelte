@@ -1,5 +1,9 @@
 <script>
-  import {deleteRequest, updateRequest} from "./main";
+  import { deleteRequest } from "./requestHelper";
+  import { getContext } from 'svelte';
+  import BookEditForm from "./BookEditForm.svelte";
+
+  const { open } = getContext('simple-modal');
 
   export let bookTitle;
   export let bookAuthors;
@@ -8,9 +12,10 @@
   export let bookCategory;
   export let bookCover;
   export let bookId;
+
   export let getAllBooksFunc = () => {}
 
-  export function deleteBook() {
+  function deleteBook() {
     console.log('book id: ', bookId);
     deleteRequest('http://localhost:4000/api/books/' + bookId, bookId).then(result => {
       if (result.status === 204) {
@@ -21,8 +26,14 @@
     });
   }
 
-  function updateBook() {
-    console.log('updated book id: ', bookId);
+  const editBook = () => {
+    open(BookEditForm, {
+      id: bookId,
+      getAllBooksFunc: () => getAllBooksFunc()
+    }, {
+      closeOnEsc: false,
+      closeOnOuterClick: false,
+    });
   }
 </script>
 
@@ -56,11 +67,11 @@
 
 <div>
   <h1>{bookTitle}</h1>
-  <h2>{bookAuthors}</h2>
+  <h2>{bookAuthors.join(', ')}</h2>
   <p>ISBN: {bookISBN}</p>
   <p>{bookDescription}</p>
-  <p>Category: {bookCategory}</p>
+  <p>Category: {bookCategory.join(', ')}</p>
   <p>{bookCover}</p>
-  <button on:click={updateBook}>Edit</button>
+  <button on:click={editBook}>Edit</button>
   <button on:click={deleteBook}>Delete</button>
 </div>

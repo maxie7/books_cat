@@ -1,8 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
+	import Modal from 'svelte-simple-modal';
+	import { getRequest, postRequest } from './requestHelper';
+	import { strToArrConverter } from './helpers';
 	import Book from './Book.svelte';
 	import Button from './Button.svelte';
-	import { getRequest, postRequest } from './main.js';
 
 	let title = '';
 	let authors = '';
@@ -23,10 +25,6 @@
 		if (allBooks) {
 			books = allBooks.data.reverse();
 		}
-	}
-
-	function strToArrConverter(value) {
-		return value.split(",").map((elem) => elem.trim());
 	}
 
 	function setTitle(event) {
@@ -103,65 +101,66 @@
 	/*}*/
 </style>
 
-<section>
-	<h2>Add New Book</h2>
-	<div>
-		<label for="title">Title</label>
-		<input type="text" id="title" value={title} on:input={setTitle}/>
-	</div>
+<Modal>
+	<section>
+		<h2>Add New Book</h2>
+		<div>
+			<label for="title">Title</label>
+			<input type="text" id="title" value={title} on:input={setTitle}/>
+		</div>
 
-	<div>
-		<label for="authors">Author(s): a comma-separated list of authors</label>
-		<input type="text" id="authors" value={authors} on:input={setAuthors} />
-	</div>
+		<div>
+			<label for="authors">Author(s): a comma-separated list of authors</label>
+			<input type="text" id="authors" value={authors} on:input={setAuthors} />
+		</div>
 
-	<div>
-		<label for="isbn">ISBN</label>
-		<input type="text" id="isbn" value={isbn} on:input={setIsbn} />
-	</div>
+		<div>
+			<label for="isbn">ISBN</label>
+			<input type="text" id="isbn" value={isbn} on:input={setIsbn} />
+		</div>
 
-	<div>
-		<label for="description">Description</label>
-		<textarea rows="3" id="description" bind:value={description}></textarea>
-	</div>
+		<div>
+			<label for="description">Description</label>
+			<textarea rows="3" id="description" bind:value={description}></textarea>
+		</div>
 
-	<div>
-		<label for="category">Category(s): a comma-separated list of categories</label>
-		<input type="text" id="category" value={category} on:input={setCategory} />
-	</div>
+		<div>
+			<label for="category">Category(s): a comma-separated list of categories</label>
+			<input type="text" id="category" value={category} on:input={setCategory} />
+		</div>
 
-	<div>
-		<label for="cover">Book Cover URL</label>
-		<input type="text" id="cover" value={cover} on:input={setCover} />
-	</div>
+		<div>
+			<label for="cover">Book Cover URL</label>
+			<input type="text" id="cover" value={cover} on:input={setCover} />
+		</div>
 
-	<div>
-		<span>all fields are required</span>
-	</div>
-	
-	<Button on:click={addBook}>ADD Book</Button>
+		<div>
+			<span>all fields are required</span>
+		</div>
 
-</section>
+		<Button on:click={addBook}>ADD Book</Button>
 
-<section>
-	<h2>Catalogue Of Books</h2>
-	{#if books.length === 0}
-		<p>
-			No books in the Library.
-		</p>
-	{:else}
-		{#each books as book}
-			<Book
-				getAllBooksFunc={() =>getAllBooks()}
-				bookId={book.id}
-				bookTitle={book.title}
-				bookAuthors={book.authors}
-				bookISBN={book.isbn}
-				bookDescription={book.description}
-				bookCategory={book.category}
-				bookCover={book.cover}
-			/>
-		{/each}
-	{/if}
-</section>
+	</section>
 
+	<section>
+		<h2>Catalogue Of Books</h2>
+		{#if books.length === 0}
+			<p>
+				No books in the Library.
+			</p>
+		{:else}
+			{#each books as book}
+				<Book
+					getAllBooksFunc={() =>getAllBooks()}
+					bookId={book.id}
+					bookTitle={book.title}
+					bookAuthors={book.authors}
+					bookISBN={book.isbn}
+					bookDescription={book.description}
+					bookCategory={book.category}
+					bookCover={book.cover}
+				/>
+			{/each}
+		{/if}
+	</section>
+</Modal>
