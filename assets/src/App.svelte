@@ -1,17 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
-	import Modal from 'svelte-simple-modal';
-	import { getRequest, postRequest } from './requestHelper';
-	import { strToArrConverter } from './helpers';
+	import { getRequest } from './helpers/requestHelper';
 	import Book from './Book.svelte';
-	import Button from './Button.svelte';
-
-	let title = '';
-	let authors = '';
-	let isbn = '';
-	let description = '';
-	let category = '';
-	let cover = '';
+	import Modal from 'svelte-simple-modal';
+	import Context from './Context.svelte';
 
 	let books = [];
 
@@ -27,52 +19,6 @@
 		}
 	}
 
-	function setTitle(event) {
-		title = event.target.value;
-	}
-
-	function setAuthors(event) {
-		authors = event.target.value;
-	}
-
-	function setIsbn(event) {
-		isbn = event.target.value;
-	}
-
-	function setCategory(event) {
-		category = event.target.value;
-	}
-
-	function setCover(event) {
-		cover = event.target.value;
-	}
-
-	function addBook() {
-		const newBook = {
-			title,
-			authors: strToArrConverter(authors),
-			isbn,
-			description,
-			category: strToArrConverter(category),
-			cover
-		};
-		const payload = {
-			"book": {
-				...newBook
-			}
-		}
-
-		postRequest('http://localhost:4000/api/books', payload).then(result => {
-			if (result.data) {
-				getAllBooks();
-			} else {
-				console.log('To do >> show modal with error (post failed)');
-			}
-		});
-
-		title = authors = isbn = description = category = cover = '';
-	}
-
 </script>
 
 <style>
@@ -80,7 +26,7 @@
 		color: purple;
 
 	}
-	section{
+	section {
 		margin: auto;
 		width :30rem;
 
@@ -102,45 +48,7 @@
 </style>
 
 <Modal>
-	<section>
-		<h2>Add New Book</h2>
-		<div>
-			<label for="title">Title</label>
-			<input type="text" id="title" value={title} on:input={setTitle}/>
-		</div>
-
-		<div>
-			<label for="authors">Author(s): a comma-separated list of authors</label>
-			<input type="text" id="authors" value={authors} on:input={setAuthors} />
-		</div>
-
-		<div>
-			<label for="isbn">ISBN</label>
-			<input type="text" id="isbn" value={isbn} on:input={setIsbn} />
-		</div>
-
-		<div>
-			<label for="description">Description</label>
-			<textarea rows="3" id="description" bind:value={description}></textarea>
-		</div>
-
-		<div>
-			<label for="category">Category(s): a comma-separated list of categories</label>
-			<input type="text" id="category" value={category} on:input={setCategory} />
-		</div>
-
-		<div>
-			<label for="cover">Book Cover URL</label>
-			<input type="text" id="cover" value={cover} on:input={setCover} />
-		</div>
-
-		<div>
-			<span>all fields are required</span>
-		</div>
-
-		<Button on:click={addBook}>ADD Book</Button>
-
-	</section>
+	<Context getAllBooksFunc={() => getAllBooks()} />
 
 	<section>
 		<h2>Catalogue Of Books</h2>
@@ -151,7 +59,7 @@
 		{:else}
 			{#each books as book}
 				<Book
-					getAllBooksFunc={() =>getAllBooks()}
+					getAllBooksFunc={() => getAllBooks()}
 					bookId={book.id}
 					bookTitle={book.title}
 					bookAuthors={book.authors}

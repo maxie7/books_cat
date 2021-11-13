@@ -1,7 +1,8 @@
 <script>
-  import { deleteRequest } from "./requestHelper";
+  import { deleteRequest } from './helpers/requestHelper';
   import { getContext } from 'svelte';
-  import BookEditForm from "./BookEditForm.svelte";
+  import BookEditForm from './BookEditForm.svelte';
+  import Button from './Button.svelte';
 
   const { open } = getContext('simple-modal');
 
@@ -32,7 +33,7 @@
       getAllBooksFunc: () => getAllBooksFunc()
     }, {
       closeOnEsc: false,
-      closeOnOuterClick: false,
+      closeOnOuterClick: false
     });
   }
 </script>
@@ -72,6 +73,6 @@
   <p>{bookDescription}</p>
   <p>Category: {bookCategory.join(', ')}</p>
   <p>{bookCover}</p>
-  <button on:click={editBook}>Edit</button>
-  <button on:click={deleteBook}>Delete</button>
+  <Button on:click={editBook}>Edit</Button>
+  <Button on:click={deleteBook}>Delete</Button>
 </div>

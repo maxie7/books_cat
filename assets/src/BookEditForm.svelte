@@ -1,7 +1,7 @@
 <script>
   import { onMount, getContext } from 'svelte';
-  import { getRequest, updateRequest } from './requestHelper';
-  import { strToArrConverter } from './helpers';
+  import { getRequest, updateRequest } from './helpers/requestHelper';
+  import { strToArrConverter } from './helpers/helpers';
 
   const { close } = getContext('simple-modal');
 
@@ -12,7 +12,6 @@
   export let bookDescription = null;
   export let bookCategory    = null;
   export let bookCover       = null;
-  // export let bookId          = null;
 
   export let getAllBooksFunc = () => {};
 
