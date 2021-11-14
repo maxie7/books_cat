@@ -40,7 +40,7 @@ export default {
 	plugins: [
 		replace({
 			preventAssignment: true,
-			'API_URL':production?'http://myhost:3000':'http://localhost:4000/api/books'
+			'API_URL':production?'https://books-cat.gigalixirapp.com':'http://localhost:4000/api/books'
 		}),
 		svelte({
 			compilerOptions: {
