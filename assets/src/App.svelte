@@ -38,6 +38,7 @@
 		grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 	}
 	.book-element {
+		background-color: #fff031;
 		border: 1px solid #fff031;
 		border-radius: 0.3rem;
 		margin: 0.1rem 0.4rem 3rem;
