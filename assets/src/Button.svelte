@@ -1,10 +1,16 @@
 <style>
   button {
-    padding: 0.15rem 0.5rem;
-    background-color: #1b1a1a;
-    border: 1px solid  aliceblue ;
+    padding: 0.3rem 0.6rem;
+    background-color: #1b1851;
+    border: 1px solid #1b1851 ;
     cursor: pointer;
-    color: white;
+    color: #fff031;
+  }
+
+  button:hover {
+    background-color: #fff031;
+    border: 1px solid #fff031;
+    color: #1b1851;
   }
 </style>
 

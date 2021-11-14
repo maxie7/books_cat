@@ -61,40 +61,65 @@
   }
 </script>
 
+<style>
+  h2 {
+    color: #1b1851;
+  }
+  input:focus, textarea:focus {
+    background: #fff031;
+    border: 1px dashed #1b1851;
+    color: #1b1851;
+  }
+  div {
+    margin-bottom: 0.4rem;
+  }
+  div.inputs input, div.inputs textarea {
+    width: 90%;
+  }
+  div.buttons {
+    text-align: center;
+  }
+  div span {
+    font-size: 0.7rem;
+    font-style: italic;
+    font-weight: 700;
+  }
+</style>
+
 <section>
   <h2>Add New Book</h2>
-  <div>
-    <label for="title">Title</label>
-    <input type="text" id="title" value={title} on:input={setTitle}/>
+  <div class="inputs">
+    <label for="title"><strong>Title</strong></label>
+    <input type="text" id="title" value={title} on:input={setTitle} />
   </div>
 
-  <div>
-    <label for="authors">Author(s): a comma-separated list of authors</label>
+  <div class="inputs">
+    <label for="authors"><strong>Author(s):</strong> a comma-separated list of authors</label>
     <input type="text" id="authors" value={authors} on:input={setAuthors} />
   </div>
 
-  <div>
-    <label for="isbn">ISBN</label>
+  <div class="inputs">
+    <label for="isbn"><strong>ISBN</strong></label>
     <input type="text" id="isbn" value={isbn} on:input={setIsbn} />
   </div>
 
-  <div>
-    <label for="description">Description</label>
+  <div class="inputs">
+    <label for="description"><strong>Description</strong></label>
     <textarea rows="3" id="description" bind:value={description}></textarea>
   </div>
 
-  <div>
-    <label for="category">Category(s): a comma-separated list of categories</label>
+  <div class="inputs">
+    <label for="category"><strong>Category(s):</strong> a comma-separated list of categories</label>
     <input type="text" id="category" value={category} on:input={setCategory} />
   </div>
 
-  <div>
-    <label for="cover">Book Cover URL</label>
+  <div class="inputs">
+    <label for="cover"><strong>Book Cover URL</strong></label>
     <input type="text" id="cover" value={cover} on:input={setCover} />
   </div>
 
   <div>
-    <span>all fields are required</span>
+    <span>* all fields are required</span>
   </div>
 
   <div class="buttons">

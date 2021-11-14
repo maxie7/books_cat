@@ -18,6 +18,14 @@
 
 </script>
 
-<div>
+<style>
+  .new-book {
+    margin-bottom: 0.4rem;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<div class="new-book">
   <Button on:click={addNewBook}>Add New Book</Button>
 </div>

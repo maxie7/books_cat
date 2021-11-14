@@ -39,40 +39,56 @@
 </script>
 
 <style>
-  div {
-    margin: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26)
-  }
   h1 {
-    color: #58046e;
+    color: #1b1851;
     font-size: 1.35rem;
     font-style: italic;
-    margin: 0.25rem 0;
+    margin: 0.4rem 0.9rem;
   }
   h2 {
     font-size: 1.1rem;
-    margin: 0.25rem 0;
-    color: #58046e;
+    margin: 0.4rem 0.9rem;
+    color: #1b1851;
+  }
+  img {
+    border-radius: 2px;
+    width: 120px;
   }
   p {
-    margin: 0.25rem 0;
+    margin: 0.4rem 0.9rem;
   }
-  button {
-    padding: 0.15rem 0.5rem;
-    background-color: #1b1a1a;
-    border: 1px solid aliceblue;
-    cursor: pointer;
-    color: white;
+  div.book {
+    text-align:justify;
+  }
+  div.buttons {
+    position: absolute;
+    bottom: -2.4rem;
+    left: 50%;
+    transform: translate(-50% , 0);
+  }
+  div.float-img {
+    float:right;
+    height:100%;
+    margin-left: 15px;
+    display:flex;
+    flex-direction: inherit;
+    justify-content:flex-end;
+    shape-outside:radial-gradient(circle 150px at bottom right,#fff 98%,transparent );
   }
 </style>
 
-<div>
+<div class="book">
   <h1>{bookTitle}</h1>
   <h2>{bookAuthors.join(', ')}</h2>
-  <p>ISBN: {bookISBN}</p>
+  <p><strong>ISBN:</strong> {bookISBN}</p>
   <p>{bookDescription}</p>
-  <p>Category: {bookCategory.join(', ')}</p>
-  <p>{bookCover}</p>
+  <p><strong>Category:</strong> {bookCategory.join(', ')}</p>
+  <div class="float-img">
+    <img alt="" src={bookCover} />
+  </div>
+
+</div>
+<div class="buttons">
   <Button on:click={editBook}>Edit</Button>
   <Button on:click={deleteBook}>Delete</Button>
 </div>
