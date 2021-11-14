@@ -69,12 +69,11 @@
     transform: translate(-50% , 0);
   }
   div.float-img {
-    float:right;
     height:100%;
-    margin-left: 15px;
+    margin-bottom: 0.4rem;
     display:flex;
     flex-direction: inherit;
-    justify-content:flex-end;
+    justify-content: center;
     shape-outside:radial-gradient(circle 150px at bottom right,#fff 98%,transparent );
   }
 </style>

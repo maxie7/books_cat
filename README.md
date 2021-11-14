@@ -54,23 +54,33 @@ You can use docker: `docker-compose -f docker/docker-compose.yml up -d` to get u
     - `mix ecto.create` and then 
     - `mix ecto.migrate`
 4. Start Phoenix: `mix phx.server`
-5. Now we need to launch frontend. Enter to /assets directory  
-and run: `npm i` or `yarn` if you prefer it over npm.
+5. Now we need to launch frontend. Enter `/assets` directory from another tab of your terminal and run: `npm i` or `yarn` if you prefer it over npm.
+6. Execute `npm run dev` and navigate to `http://localhost:5000`
 
+![Running Svelte](https://res.cloudinary.com/maxie7/image/upload/v1636904602/doc_helpers/svelte_start_up.png)
 
-To start your Phoenix server:
+At beginning there's no book data. You can use some mock data from `/assets/src/mockups/booksMock` file and use Postman for testing
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+### Testing
+Run `mix test` for API tests
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+![app_tests](https://res.cloudinary.com/maxie7/image/upload/v1636905757/doc_helpers/mix_test.png)
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+You could also visit endpoint in the browser `http://localhost:4000/api/books` and investigate api responses.
 
+![api_response](https://res.cloudinary.com/maxie7/image/upload/v1636906091/doc_helpers/json_api_response_localhost.png)
 
+The BooksCat now looks like this, but there are a lot of ideas worth mentioning
 
-## Learn more
+![The_BooksCat](https://res.cloudinary.com/maxie7/image/upload/v1636906317/doc_helpers/populated_webapp.png)
 
-  * Official website: https://www.phoenixframework.org/
+### Ideas / Improvements 
+
+With the next iterations I'd like to add:
+  - The most important feature **searcher** with **filters**
+  - Authorization/authentication for backend (different roles for DB) and frontend (sign in new users, user roles).
+  - Add more fields for Book Entity like 'pages', 'subtitle', 'publisher'.
+  - More validation cases (pop up for errores, etc.)
+  - More tests
+  - Extra integration -> add bar code ISBN scanner for faster adding new books to the library.
 
