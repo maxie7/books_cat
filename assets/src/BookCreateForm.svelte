@@ -6,6 +6,8 @@
 
   const { close } = getContext('simple-modal');
 
+  let api_url = "API_URL";
+
   let title = '';
   let authors = '';
   let isbn = '';
@@ -49,7 +51,7 @@
         ...newBook
       }
     }
-    postRequest('http://localhost:4000/api/books', payload).then(result => {
+    postRequest(`${api_url}`, payload).then(result => {
       if (result.data) {
         getAllBooksFunc();
       } else {

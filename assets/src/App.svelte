@@ -5,6 +5,7 @@
 	import Modal from 'svelte-simple-modal';
 	import Context from './Context.svelte';
 
+	let api_url = "API_URL";
 	let books = [];
 
 	onMount(() => {
@@ -12,7 +13,7 @@
 	})
 
 	async function getAllBooks() {
-		const allBooks = await getRequest('http://localhost:4000/api/books');
+		const allBooks = await getRequest(api_url);
 		console.log('ALL BOOKS: ', allBooks);
 		if (allBooks) {
 			books = allBooks.data.reverse();

@@ -6,6 +6,8 @@
 
   const { close } = getContext('simple-modal');
 
+  let api_url = "API_URL";
+
   export let id;
   export let bookTitle       = null;
   export let bookAuthors     = null;
@@ -21,7 +23,7 @@
   })
 
   async function getBookEntity(id) {
-    const bookEntity = await getRequest(`http://localhost:4000/api/books/${id}`);
+    const bookEntity = await getRequest(`${api_url}/${id}`);
     console.log('BOOK ENTITY: ', bookEntity);
     if (bookEntity) {
       bookTitle       = bookEntity.data.title;
@@ -47,7 +49,7 @@
         ...updatedBook
       }
     };
-    updateRequest(`http://localhost:4000/api/books/${id}`, payload).then(result => {
+    updateRequest(`${api_url}/${id}`, payload).then(result => {
       if (result.data) {
         getAllBooksFunc();
         console.log('The book is updated successfully 🎉 🍾');

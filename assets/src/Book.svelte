@@ -6,6 +6,8 @@
 
   const { open } = getContext('simple-modal');
 
+  let api_url = "API_URL";
+
   export let bookTitle;
   export let bookAuthors;
   export let bookISBN;
@@ -18,7 +20,7 @@
 
   function deleteBook() {
     console.log('book id: ', bookId);
-    deleteRequest('http://localhost:4000/api/books/' + bookId, bookId).then(result => {
+    deleteRequest(`${api_url}/${bookId}`, bookId).then(result => {
       if (result.status === 204) {
         getAllBooksFunc();
       } else {
