@@ -44,6 +44,6 @@ defmodule BooksCatWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug CORSPlug, origin: ["http://localhost:5000"]
+  plug CORSPlug, origin: ["http://localhost:5000", "https://romantic-allen-6ea1a0.netlify.app"]
   plug BooksCatWeb.Router
 end
