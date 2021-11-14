@@ -1,4 +1,4 @@
-# BooksCat ![Markdown image](https://res.cloudinary.com/maxie7/image/upload/c_scale,w_80/v1636894258/doc_helpers/iu_yrc7bx.png)
+# BooksCat ![BooksCat](https://res.cloudinary.com/maxie7/image/upload/c_scale,w_80/v1636894258/doc_helpers/iu_yrc7bx.png)
 
 ## Description
 This is a proof of concept web app for managing books in a library.  
@@ -83,4 +83,7 @@ With the next iterations I'd like to add:
   - More validation cases (pop up for errores, etc.)
   - More tests
   - Extra integration -> add bar code ISBN scanner for faster adding new books to the library.
+
+
+![BookCatalogue](https://res.cloudinary.com/maxie7/image/upload/v1636908141/doc_helpers/cat-th.png)
 
