@@ -66,4 +66,58 @@ defmodule BooksCat.StorageTest do
       assert %Ecto.Changeset{} = Storage.change_book(book)
     end
   end
+
+  describe "authors" do
+    alias BooksCat.Storage.Author
+
+    import BooksCat.StorageFixtures
+
+    @invalid_attrs %{full_name: nil}
+
+    test "list_authors/0 returns all authors" do
+      author = author_fixture()
+      assert Storage.list_authors() == [author]
+    end
+
+    test "get_author!/1 returns the author with given id" do
+      author = author_fixture()
+      assert Storage.get_author!(author.id) == author
+    end
+
+    test "create_author/1 with valid data creates a author" do
+      valid_attrs = %{full_name: "some full_name"}
+
+      assert {:ok, %Author{} = author} = Storage.create_author(valid_attrs)
+      assert author.full_name == "some full_name"
+    end
+
+    test "create_author/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Storage.create_author(@invalid_attrs)
+    end
+
+    test "update_author/2 with valid data updates the author" do
+      author = author_fixture()
+      update_attrs = %{full_name: "some updated full_name"}
+
+      assert {:ok, %Author{} = author} = Storage.update_author(author, update_attrs)
+      assert author.full_name == "some updated full_name"
+    end
+
+    test "update_author/2 with invalid data returns error changeset" do
+      author = author_fixture()
+      assert {:error, %Ecto.Changeset{}} = Storage.update_author(author, @invalid_attrs)
+      assert author == Storage.get_author!(author.id)
+    end
+
+    test "delete_author/1 deletes the author" do
+      author = author_fixture()
+      assert {:ok, %Author{}} = Storage.delete_author(author)
+      assert_raise Ecto.NoResultsError, fn -> Storage.get_author!(author.id) end
+    end
+
+    test "change_author/1 returns a author changeset" do
+      author = author_fixture()
+      assert %Ecto.Changeset{} = Storage.change_author(author)
+    end
+  end
 end

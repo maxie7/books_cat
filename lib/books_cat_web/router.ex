@@ -8,6 +8,7 @@ defmodule BooksCatWeb.Router do
   scope "/api", BooksCatWeb do
     pipe_through :api
     resources "/books", BookController, except: [:new, :edit]
+    resources "/authors", AuthorController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

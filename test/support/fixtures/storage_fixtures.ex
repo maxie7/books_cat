@@ -27,4 +27,23 @@ defmodule BooksCat.StorageFixtures do
 
     book
   end
+
+  @doc """
+  Generate a unique author full_name.
+  """
+  def unique_author_full_name, do: "some full_name#{System.unique_integer([:positive])}"
+
+  @doc """
+  Generate a author.
+  """
+  def author_fixture(attrs \\ %{}) do
+    {:ok, author} =
+      attrs
+      |> Enum.into(%{
+        full_name: unique_author_full_name()
+      })
+      |> BooksCat.Storage.create_author()
+
+    author
+  end
 end
