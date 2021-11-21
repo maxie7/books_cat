@@ -2,11 +2,16 @@
   import { onMount, getContext } from 'svelte';
   import { getRequest, updateRequest } from './helpers/requestHelper';
   import { strToArrConverter } from './helpers/helpers';
+  import { validateIsbn, validateIsCoverAnImage } from './helpers/validators';
   import Button from './Button.svelte';
+  import IsbnValidateWarning from './validateWarnings/IsbnValidateWarning.svelte';
+  import CoverValidateWarning from './validateWarnings/CoverValidateWarning.svelte';
 
   const { close } = getContext('simple-modal');
 
   let api_url = "API_URL";
+  let isbnNotValid = false;
+  let coverNotValid = false;
 
   export let id;
   export let bookTitle       = null;
@@ -36,6 +41,16 @@
   }
 
   function updateBookEntity() {
+    if (!validateIsbn(bookISBN)) {
+      isbnNotValid = true;
+      return;
+    }
+
+    if (!validateIsCoverAnImage(bookCover)) {
+      coverNotValid = true;
+      return;
+    }
+
     const updatedBook = {
       title: bookTitle,
       authors: strToArrConverter(bookAuthors),
@@ -70,6 +85,7 @@
   }
 
   function setIsbn(event) {
+    isbnNotValid = false;
     bookISBN = event.target.value;
   }
 
@@ -78,6 +94,7 @@
   }
 
   function setCover(event) {
+    coverNotValid = false;
     bookCover = event.target.value;
   }
 </script>
@@ -119,6 +136,9 @@
 
   <div class="inputs">
     <label for="isbn"><strong>ISBN</strong></label>
+    {#if isbnNotValid}
+      <IsbnValidateWarning />
+    {/if}
     <input type="text" id="isbn" value={bookISBN} on:input={setIsbn} />
   </div>
 
@@ -134,6 +154,9 @@
 
   <div class="inputs">
     <label for="cover"><strong>Book Cover URL</strong></label>
+    {#if coverNotValid}
+      <CoverValidateWarning />
+    {/if}
     <input type="text" id="cover" value={bookCover} on:input={setCover} />
   </div>
 

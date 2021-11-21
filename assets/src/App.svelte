@@ -16,7 +16,7 @@
 		const allBooks = await getRequest(api_url);
 		console.log('ALL BOOKS: ', allBooks);
 		if (allBooks) {
-			books = allBooks.data.reverse();
+			books = allBooks.data;
 		}
 	}
 

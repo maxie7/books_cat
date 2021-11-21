@@ -1,8 +1,11 @@
 <script>
   import { getContext } from 'svelte';
   import { strToArrConverter } from './helpers/helpers';
+  import { validateIsbn, validateIsCoverAnImage } from './helpers/validators';
   import { postRequest } from './helpers/requestHelper';
   import Button from './Button.svelte';
+  import IsbnValidateWarning from './validateWarnings/IsbnValidateWarning.svelte';
+  import CoverValidateWarning from './validateWarnings/CoverValidateWarning.svelte';
 
   const { close } = getContext('simple-modal');
 
@@ -14,6 +17,8 @@
   let description = '';
   let category = '';
   let cover = '';
+  let isbnNotValid = false;
+  let coverNotValid = false;
 
   export let getAllBooksFunc = () => {}
 
@@ -26,6 +31,7 @@
   }
 
   function setIsbn(event) {
+    isbnNotValid = false;
     isbn = event.target.value;
   }
 
@@ -34,10 +40,21 @@
   }
 
   function setCover(event) {
+    coverNotValid = false;
     cover = event.target.value;
   }
 
   function addBook() {
+    if (!validateIsbn(isbn)) {
+      isbnNotValid = true;
+      return;
+    }
+
+    if (!validateIsCoverAnImage(cover)) {
+      coverNotValid = true;
+      return;
+    }
+
     const newBook = {
       title,
       authors: strToArrConverter(authors),
@@ -102,6 +119,9 @@
 
   <div class="inputs">
     <label for="isbn"><strong>ISBN</strong></label>
+    {#if isbnNotValid}
+      <IsbnValidateWarning />
+    {/if}
     <input type="text" id="isbn" value={isbn} on:input={setIsbn} />
   </div>
 
@@ -117,6 +137,9 @@
 
   <div class="inputs">
     <label for="cover"><strong>Book Cover URL</strong></label>
+    {#if coverNotValid}
+      <CoverValidateWarning />
+    {/if}
     <input type="text" id="cover" value={cover} on:input={setCover} />
   </div>
 
