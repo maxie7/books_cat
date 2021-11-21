@@ -1,11 +1,11 @@
 <script>
   import { onMount, getContext } from 'svelte';
   import { getRequest, updateRequest } from './helpers/requestHelper';
-  import { strToArrConverter } from './helpers/helpers';
-  import { validateIsbn, validateIsCoverAnImage } from './helpers/validators';
+  import { strToArrConverter } from './helpers/convertHelper';
+  import { validateIsbn, validateIsCoverAnImage } from './helpers/validationHelper';
   import Button from './Button.svelte';
-  import IsbnValidateWarning from './validateWarnings/IsbnValidateWarning.svelte';
-  import CoverValidateWarning from './validateWarnings/CoverValidateWarning.svelte';
+  import IsbnValidateWarning from './validationWarnings/IsbnWarning.svelte';
+  import CoverValidateWarning from './validationWarnings/CoverWarning.svelte';
 
   const { close } = getContext('simple-modal');
 

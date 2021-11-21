@@ -1,11 +1,11 @@
 <script>
   import { getContext } from 'svelte';
-  import { strToArrConverter } from './helpers/helpers';
-  import { validateIsbn, validateIsCoverAnImage } from './helpers/validators';
+  import { strToArrConverter } from './helpers/convertHelper';
+  import { validateIsbn, validateIsCoverAnImage } from './helpers/validationHelper';
   import { postRequest } from './helpers/requestHelper';
   import Button from './Button.svelte';
-  import IsbnValidateWarning from './validateWarnings/IsbnValidateWarning.svelte';
-  import CoverValidateWarning from './validateWarnings/CoverValidateWarning.svelte';
+  import IsbnWarning from './validationWarnings/IsbnWarning.svelte';
+  import CoverWarning from './validationWarnings/CoverWarning.svelte';
 
   const { close } = getContext('simple-modal');
 
@@ -120,7 +120,7 @@
   <div class="inputs">
     <label for="isbn"><strong>ISBN</strong></label>
     {#if isbnNotValid}
-      <IsbnValidateWarning />
+      <IsbnWarning />
     {/if}
     <input type="text" id="isbn" value={isbn} on:input={setIsbn} />
   </div>
@@ -138,7 +138,7 @@
   <div class="inputs">
     <label for="cover"><strong>Book Cover URL</strong></label>
     {#if coverNotValid}
-      <CoverValidateWarning />
+      <CoverWarning />
     {/if}
     <input type="text" id="cover" value={cover} on:input={setCover} />
   </div>
