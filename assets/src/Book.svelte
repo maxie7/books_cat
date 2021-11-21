@@ -54,13 +54,20 @@
   }
   img {
     border-radius: 2px;
+    height: 180px;
     width: 120px;
+    margin: 0.6rem 0;
   }
   p {
     margin: 0.4rem 0.9rem;
   }
   div.book {
-    text-align:justify;
+    margin: 0.1rem;
+  }
+  div.head-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0.4rem;
   }
   div.buttons {
     position: absolute;
@@ -70,23 +77,32 @@
   }
   div.float-img {
     height:100%;
-    margin-bottom: 0.4rem;
+    margin: 0.2rem 0.6rem;
     display:flex;
     flex-direction: inherit;
     justify-content: center;
     shape-outside:radial-gradient(circle 150px at bottom right,#fff 98%,transparent );
   }
+  div.description {
+    margin: 0.4rem 0.9rem;
+    text-align:justify;
+  }
 </style>
 
 <div class="book">
-  <h1>{bookTitle}</h1>
-  <h2>{bookAuthors.join(', ')}</h2>
-  <p><strong>ISBN:</strong> {bookISBN}</p>
-  <p>{bookDescription}</p>
-  <p><strong>Category:</strong> {bookCategory.join(', ')}</p>
-  <div class="float-img">
-    <img alt="" src={bookCover} />
+  <div class="head-container">
+    <div>
+      <h1>{bookTitle}</h1>
+      <h2>{bookAuthors.join(', ')}</h2>
+      <p><strong>ISBN:</strong> {bookISBN}</p>
+      <p><strong>Category:</strong> {bookCategory.join(', ')}</p>
+    </div>
+    <div class="float-img">
+      <img alt="" src={bookCover} />
+    </div>
   </div>
+
+  <div class="description">{bookDescription}</div>
 
 </div>
 <div class="buttons">
