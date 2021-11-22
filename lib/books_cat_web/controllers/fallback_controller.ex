@@ -10,15 +10,16 @@ defmodule BooksCatWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(BooksCatWeb.ErrorView)
+    |> put_view(BooksCatWeb.ChangesetView)
     |> render(:"404")
   end
 
-  # This clause will handle invalid resource data.
-  def call(conn, {:error, %Ecto.Changeset{}}) do
+  # This clause will handle invalidated json data
+  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
+    IO.inspect(changeset.errors)
     conn
-    |> put_status(:unprocessable_entity)
-    |> put_view(BooksCatWeb.ErrorView)
-    |> render(:"422")
+    |> put_status(:bad_request)
+    |> put_view(BooksCatWeb.ChangesetView)
+    |> render("error.json", changeset: changeset)
   end
 end
