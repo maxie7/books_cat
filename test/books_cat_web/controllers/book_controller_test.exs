@@ -54,7 +54,7 @@ defmodule BooksCatWeb.BookControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.book_path(conn, :create), book: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      assert json_response(conn, 400)["errors"] != %{}
     end
   end
 
@@ -80,7 +80,7 @@ defmodule BooksCatWeb.BookControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn, book: book} do
       conn = put(conn, Routes.book_path(conn, :update, book), book: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      assert json_response(conn, 400)["errors"] != %{}
     end
   end
 
