@@ -35,3 +35,4 @@ books_cat-*.tar
 # Static artifacts
 /assets/node_modules
 /assets/public/build/
+/assets/.tool-versions

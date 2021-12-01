@@ -72,7 +72,7 @@ You could also visit endpoint in the browser `http://localhost:4000/api/books` a
 
 The BooksCat now looks like this, but there are a lot of ideas worth mentioning
 
-![The_BooksCat](https://res.cloudinary.com/maxie7/image/upload/v1636906317/doc_helpers/populated_webapp.png)
+![The_BooksCat](https://res.cloudinary.com/maxie7/image/upload/v1638354198/doc_helpers/books_cat_sample.png)
 
 ### Ideas / Improvements 
 
